@@ -6,20 +6,16 @@ public class Tips {
     private int randomNumber;
     private String response;
     private int base;
-    private int previousBase;
     private int maxBase;
     private int minBase;
-//    private boolean greater_than_250;
-//    private boolean greater_than_500;
-//    private boolean greater_than_750;
-//    private boolean greater_than_875;
+
     Random ran = new Random();
 
-//    Tips (not best coding practice, but gets the work done in this case, without implementing an algorithm)
+//    Tips
     public Tips() {
         randomNumber = ran.nextInt(1000) + 1; // Initially (0 - 999), but adding one means.. (1 - 1000)
         Iteration_amt = 0;
-        previousBase = 0;
+        maxBase = 1000;
         base = 500;
     }
 
@@ -43,40 +39,26 @@ public class Tips {
         this.base = base;
     }
 
-    //    public void setBase() {
-//        this.base = midPointOfBase();
-//    }
-
-    public int getPreviousBase() {
-        return previousBase;
+    public int getMaxBase() {
+        return maxBase;
     }
 
-//    public void setPreviousBase(int x) {
-//        this.previousBase = previousBase;
-//    }
+    public int getMinBase() {
+        return minBase;
+    }
 
     // Methods to help the player "zero in" to the answer
 
-//    public int addToBase() {
-//        this.base = base + midPointOfBase();
-//        return base;
-//    }
-//
-//    public int subFromBase() {
-//        this.base = base - midPointOfBase();
-//        return base;
-//    }
-
-    public int setMaxBase(int highestNum) {
-        this.base = highestNum;
+    public void setMaxBase(int highestNum) {
+        this.maxBase = highestNum;
     }
 
-    public int setMinBase(int lowestNum) {
-        this.previousBase = lowestNum;
+    public void setMinBase(int lowestNum) {
+        this.minBase = lowestNum;
     }
 
     public int midPointOfBase() {
-        int midPoint = (getBase() + getPreviousBase()) / 2;
+        int midPoint = (getMaxBase() + getMinBase()) / 2;
         return midPoint;
     }
 
@@ -88,18 +70,17 @@ public class Tips {
 
     public String getTip(int guess) {
         if (getRandomNumber() > guess) {
-            response = "TIP: The number is greater than " + getBase();
-            setMaxBase(guess);
-
-//            addToBase();
-        } else if (getRandomNumber() < guess) {
-            response = "TIP: The number is less than " + getBase();
             setMinBase(guess);
-//            subFromBase();
+
+            response = "TIP: The number is greater than your guess number."
+                    + " Try something between " + getMinBase() + " and " + getMaxBase();
+
+        } else if (getRandomNumber() < guess) {
+            setMaxBase(guess);
+            response = "TIP: The number is less than your guess number."
+                    + " Try something between " + getMinBase() + " and " + getMaxBase();
         }
         return response;
     }
-
-
 
 }
