@@ -10,8 +10,8 @@ public class SalesTest {
         int input;
         int answer;
         int quantity;
-        int[][] array = s.getSales();
         int[] value = s.getList();
+        int[][] array = s.getSales();
         int[] col_sum = new int[4];
 
         // Loop that asks for user input... id, product number... Another Loop will use i and j variables
@@ -74,7 +74,8 @@ public class SalesTest {
                 s.setAmountSold(quantity);
             }
 
-            value = s.addToColumnSum(s.getUserId(), s.getItemQuantitySold(s.getUserId(), s.getProductId()));
+            s.addToColumnSum(s.getUserId(), s.getItemQuantitySold(s.getUserId(), s.getProductId()));
+            value[s.getUserId()] = s.getList();
             System.out.println("");
             System.out.println(s.setItemQuantitySold(s.getUserId(), s.getProductId(), s.getAmountSold()));
             System.out.println("");
@@ -98,10 +99,14 @@ public class SalesTest {
                 System.out.println();
                 System.out.println("+ + + + + + + + + + + + + + + + + + + + +");
                 for (int count = 0; count < 4; count++) {
+                    int numbers = 0;
+//                    System.out.println(col_sum[count]);
+//                    System.out.println(value[count]);
                     col_sum[count] = value[count];
-                }
-                for (int count = 0; count < 4; count++) {
-                    System.out.printf(col_sum[count] + "\t");
+                    numbers = numbers + col_sum[count];
+//                    for (count = 0; count < 4; count++) {
+                    System.out.printf(numbers + "\t");
+//                    }
                 }
             }
             System.out.println("");
