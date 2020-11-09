@@ -20,7 +20,7 @@ Completely open-source if you'd like to use some of my code.
 
 - [Exercise 4.18](src/Unit%203/exercise04_18)
 
-### Unit 4 :chart_with_upwards_trend:
+### Unit 4 :id:
 
 - [Exercise 5.17](src/Unit%204/exercise05_17)
 
@@ -28,7 +28,7 @@ Completely open-source if you'd like to use some of my code.
 
 - [Exercise 6.30](src/Unit%205/exercise06_30)
 
-### Unit 6 :chart_with_downwards_trend:
+### Unit 6 :chart_with_upwards_trend:
 
 - [Exercise 7.20](src/Unit%206/exercise07_20)
 
