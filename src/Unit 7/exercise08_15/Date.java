@@ -1,18 +1,20 @@
 public class Date {
 
+    // Instantiating Global Variables
+
     private final static String MM_DD_YYYY = "MM_DD_YYYY";
     private final static String MONTH_DD_YYYY = "MONTH_DD_YYYY";
     private final static String DDD_YYYY = "DDD_YYYY";
+    private final String[] months = {
+            "", "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+    };
 
     private int month;
     private int day;
     private int year;
     private int dayNumber;
     private boolean leap;
-    private final String[] months = {
-            "", "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-    };
 
     // Constructors
 
