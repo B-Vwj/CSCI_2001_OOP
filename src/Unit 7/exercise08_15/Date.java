@@ -5,39 +5,65 @@ public class Date {
     private final static String DDD_YYYY = "DDD_YYYY";
 
     private int month;
-    private int date;
+    private int day;
     private int year;
-
+    private int dayNumber;
+    private boolean leap;
     private final String[] months = {
             "", "January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
     };
 
-    public Date (int month, int date, int year) {
+    // Constructors
+
+    public Date (int month, int day, int year) {
         this.month = month;
-        this.date = date;
+        this.day = day;
         this.year = year;
-//        int[] daysPerMonth = { 0, 31, getFebDays(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        dayNumber = getDayNumber();
     }
 
-    public Date (String month, int date, int year) {
+    public Date (String month, int day, int year) {
         for (int i = 1; i < months.length; i++) {
             if (months[i].equals(month)) {
                 this.month = i;
             }
         }
-        this.date = date;
+        this.day = day;
         this.year = year;
+        dayNumber = getDayNumber();
+    }
+
+    public Date (int dayNumber, int year) {
+        this.dayNumber = dayNumber;
+        this.year = year;
+        int[] daysPerMonth = { 0, 31, getFebDays(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+        month = 1;
+
+        for (int i = 1; i < daysPerMonth.length; i++) {
+
+            if (dayNumber - daysPerMonth[i] > 0) {
+                dayNumber -= daysPerMonth[i];
+                month++;
+            } else {
+                break;
+            }
+
+        }
+        day = dayNumber;
     }
 
     // Leap Year Validations
 
     private boolean validateLeapYear(int year) {
-        boolean leap = false;
+        int test_one = year % 4;
+        int test_two = year % 100;
+        int test_three = year % 400;
 
-        if (year % 4 == 0) {
-            if (year % 100 == 0) {
-                if (year % 400 == 0) {
+        if (test_one == 0) {
+            if (test_two == 0) {
+                if (test_three == 0) {
                     leap = true;
                 } else {
                     leap = false;
@@ -52,11 +78,9 @@ public class Date {
         if (leap) {
             System.out.println();
             System.out.println("Leap year detected!");
-            System.out.println();
         } else {
             System.out.println();
             System.out.println("No leap year detected.");
-            System.out.println();
         }
 
         return leap; // True or False
@@ -72,21 +96,34 @@ public class Date {
         }
     }
 
-    // TODO: Create a function that takes in an argument and displays the corresponding date format.
+    private int getDayNumber() {
+        int[] daysPerMonth = { 0, 31, getFebDays(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        dayNumber = day;
+
+        for (int i = 1; i < daysPerMonth.length; i++) {
+            if (i < month) {
+                dayNumber += daysPerMonth[i];
+            } else {
+                break;
+            }
+        }
+        return dayNumber;
+    }
+
     public void displayDate(String format) {
         switch (format) {
             case MM_DD_YYYY:
-                System.out.println("MM/DD/YYYY: " + month + "/" + date + "/" + year);
+                System.out.println("MM/DD/YYYY: " + month + "/" + day + "/" + year);
                 System.out.println();
                 break;
             case MONTH_DD_YYYY:
-                System.out.println("MONTH DD, YYYY: " + months[month] + " " + date + ", " + year);
+                System.out.println("MONTH DD, YYYY: " + months[month] + " " + day + ", " + year);
                 System.out.println();
                 break;
-//            case DDD_YYYY:
-//                System.out.println("DDD YYYY: " + " " + year);
-//                System.out.println();
-//                break;
+            case DDD_YYYY:
+                System.out.println("DDD YYYY: " + dayNumber + " " + year);
+                System.out.println();
+                break;
             default:
                 break;
         }

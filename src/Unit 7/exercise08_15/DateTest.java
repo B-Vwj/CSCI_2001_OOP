@@ -15,8 +15,6 @@ public class DateTest {
         System.out.println("Enter a year... ");
         user_year = sc.nextInt();
 
-        //TODO: Create function to calculate days
-
         System.out.println();
         System.out.println("Enter a day... ");
         user_day = sc.nextInt();
@@ -29,17 +27,15 @@ public class DateTest {
             System.out.println();
             d.displayDate("MM_DD_YYYY");
             d.displayDate("MONTH_DD_YYYY");
-//            d.displayDate("DDD_YYYY");
+            d.displayDate("DDD_YYYY");
         } catch (Exception e) {
             user_month_string = sc.nextLine();
             Date d = new Date(user_month_string, user_day, user_year);
             System.out.println();
             d.displayDate("MM_DD_YYYY");
             d.displayDate("MONTH_DD_YYYY");
-//            d.displayDate("DDD_YYYY");
+            d.displayDate("DDD_YYYY");
         }
-
-        // TODO: Create function where you pass in the user input and output the corresponding month
 
     }
 
