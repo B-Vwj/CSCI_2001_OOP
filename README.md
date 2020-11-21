@@ -38,7 +38,7 @@ Completely open-source if you'd like to use some of my code.
 
 ### Unit 8
 
-- _Coming Soon_
+- [Student Data Entry](src/Unit%208/uni_data_entry)
 
 ### Unit 9
 
