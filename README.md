@@ -43,3 +43,7 @@ Completely open-source if you'd like to use some of my code.
 ### Unit 9
 
 - [Bill Paying System](src/Unit%209/bill_paying_system)
+
+### Extra Credit
+
+- [Exception Handling](src/Extra%20Credit/Handling%20Exceptions)
